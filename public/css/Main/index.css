@@ -1,0 +1,181 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.main_head_block {
+	height: 40px;
+	border-bottom: 1px solid black;
+}
+.main_head {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid black;
+	gap: 30px;
+	padding-left: 30px;
+}
+.main_head a {
+	position: relative;
+	text-decoration: none;
+	color: black;
+	font-size: 25px;
+	padding: 4px;
+	transition: 0.3s ease;
+}
+.main_head a::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 2px; 
+	background-color: black; 
+	bottom: 0;
+	left: 0;
+	transform: scaleX(0); 
+	transform-origin: center;
+	transition: transform 0.3s ease; 
+}
+.main_head a:hover {
+	border-radius: 4px;
+}
+.main_head a:hover::before {
+	transform: scaleX(1);
+}
+.main_head a.active::before {
+	transform: scaleX(1);
+}
+
+
+/*CSS для header*/
+
+.head_block {
+	height: 60px;
+	display: flex;
+	
+	padding: 10px;
+	box-shadow: 0px 1px 10px 2px black;
+}
+.center {
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+.center .left_block {
+	width: 100%;
+	height: 100%;
+	align-content: center;
+}
+.center .left_block {
+	width: 100%;
+	height: 100%;
+	align-content: center;
+}
+.center .left_block span {
+	margin-left: 70px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	font-size: 24px;
+}
+.center .right_block form {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: end;
+	align-content: center;
+}
+.center .right_block form button {
+	font-size: 20px;
+	padding: 2px;
+	width: 100px;
+	border-radius: 4px;
+	background-color: white;
+	border: 3px solid rgb(19, 105, 192);
+}
+.center .right_block form button:hover {
+	background-color: #EEE;
+}
+/*КОНЕЦ header*/
+
+
+/*CSS для main*/
+.main {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.main_block {
+	position: relative;
+	margin-top: 10px;
+	width: auto;
+	min-width: 1400px;
+	max-width: 1590px;
+	height: auto;
+	min-height: 850px;
+	border-radius: 4px;
+	background-color: white;
+	box-shadow: 0px 2px 10px 2px black;
+}
+
+/*КОНЕЦ main*/
+
+.notification {
+	font-family: Montserrat Alternates;
+	border-radius: 4px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    position: fixed;
+    width: 300px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    text-align: center;
+    font-size: 25px;
+}
+.notification-content {
+    width: 100%;
+    justify-content: center;
+    position: absolute;
+    display: flex;
+}
+
+.msg {
+	padding: 4px;
+	border: 2px solid red;
+	border-radius: 10px;
+	position: relative;
+	width: 370px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+.msg_green {
+	padding: 4px;
+	border: 2px solid #009c27;
+	border-radius: 10px;
+	position: relative;
+	max-width: 390px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+.form-msg {
+	position: relative;
+	top: 180px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+}

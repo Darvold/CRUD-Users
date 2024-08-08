@@ -1,0 +1,65 @@
+.msg {
+	padding: 4px;
+	border: 2px solid red;
+	border-radius: 10px;
+	position: relative;
+	width: 370px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+.msg_green {
+	padding: 4px;
+	border: 2px solid #009c27;
+	border-radius: 10px;
+	position: relative;
+	max-width: 390px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+.form-msg {
+	position: relative;
+	top: 180px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+.notification {
+	font-family: Montserrat Alternates;
+	border-radius: 4px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    position: fixed;
+    width: 300px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    z-index: 1000;
+    text-align: center;
+    font-size: 25px;
+}
+.success {
+	box-shadow: 0 5px 5px 5px rgba(89, 172, 67, 0.8);
+}
+.error {
+	box-shadow: 0 5px 5px 5px rgba(211, 43, 48, 0.8);
+}
+.info {
+	box-shadow: 0 5px 5px 5px rgba(31, 45, 223, 0.8);
+}
+.notification-content {
+    width: 100%;
+    justify-content: center;
+    position: absolute;
+    display: flex;
+}
+/*  box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.6);*/

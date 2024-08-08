@@ -1,0 +1,67 @@
+{# templates/login.html.twig #}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/LoginAndRegisterUser/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/LoginAndRegisterUser/media_form.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('css/LoginAndRegisterUser/background_login.css') }}">#}
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    <title>Авторизация</title>
+</head>
+<body>
+<div class="center">
+    <form method="post" action="{{ path('login_post.store') }}" class="Reg_Form">
+        {% set formData = app.session.getFlashBag().get('form_data')|first %}
+        <input type="hidden" name="_token" value="{{ csrf_token('authenticate') }}">
+        <span class="Text-Label-border-bottom">
+				<span class="Text-Label">Авторизация</span>
+			</span>
+        <div class="form-group">
+            <label for="login">Логин</label>
+            <img src="{{ asset('css/LoginAndRegisterUser/icons/user.svg') }}" class="icon">
+            <input type="text" name="login" placeholder="" value="{{ formData['login']|default('') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <img src="{{ asset('css/LoginAndRegisterUser/icons/password.svg') }}" class="icon">
+            <input type="password" name="password" placeholder="" required>
+        </div>
+        <button type="submit">Отправить</button>
+        <div class="Button-Back">
+            <a href="{{ path('registr.index') }}" class="Button_b">Регистрация</a>
+        </div>
+    </form>
+</div>
+<div class="form-msg">
+    {% if app.session.flashBag.has('success') %}
+        <div class="notification-content">
+            <div class="notification"> {{ app.session.flashBag.get('success')[0] }}</div>
+        </div>
+
+    {% elseif app.session.flashBag.has('error') %}
+        <div class="notification-content">
+            <div class="notification"> {{ app.session.flashBag.get('error')[0] }}</div>
+        </div>
+
+    {% endif %}
+</div>
+<script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $(".notification").css('top', '-100px'); // Скрываем уведомление за пределами видимой области
+        setTimeout(function() {
+            $(".notification").animate({top: 20}, 500, function() {
+                setTimeout(function() {
+                    $(".notification").animate({top: '-100px'}, 500, function() {
+                        $(this).remove();
+                    });
+                }, 6000); // 6 секунд
+            });
+        }, 0); // Задержка перед появлением
+    });
+</script>
+
+</body>
+</html>

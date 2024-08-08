@@ -1,0 +1,121 @@
+{# templates/registr.html.twig #}
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Главная{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/Main/allUsers/allUsers.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<div class="main_head">
+    <a href="{{ path('profile.index') }}">Мой профиль</a>
+    <a href="{{ path('allUsers.index') }}" class="active">Список пользователей</a>
+</div>
+<div class="main_content">
+    <div class="flex_content">
+        <div class="head_block_content">
+            <span>Список всех пользователей</span>
+        </div>
+        <div class="content_users">
+            <div class="main_content_center">
+                {% for user in users %}
+                {% if(user.id == userId) %}
+                <div class="user_inf_block" style="border: 2px solid #4180BDFF;">
+                    <div class="my_profile">
+                        <span>Мой профиль</span>
+                    </div>
+                    {% else %}
+                    <div class="user_inf_block">
+                        {% endif %}
+                        <div class="flex_inf" data-id="{{user.id}}">
+                            <div class="img_profile">
+                                <img src="{{asset('image/user.png')}}">
+                            </div>
+                            <div class="column_inf">
+                                <div class="form_block">
+                                    <label>Логин: </label>
+                                    <input type="text" name="login" value="{{ user.login }}">
+                                </div>
+                                <div class="form_block">
+                                    <label>ФИО: </label>
+                                    <input type="text" name="fio" value="{{ user.fio }}">
+                                </div>
+                                <div class="form_block">
+                                    <label>Телефон: </label>
+                                    <input type="text" data-mask="phone" id="phone_{{ user.id }}" class="phone" value="{{ user.phone }}" placeholder="+7">
+                                </div>
+                                <div class="form_block">
+                                    <label>Почта: </label>
+                                    <input type="email" name="email" value="{{ user.email }}">
+                                </div>
+                                <div class="form_block">
+                                    <label>Новый пароль: </label>
+                                    <input type="password" name="password" value="">
+                                </div>
+                                <div class="flex_button">
+                                    <form method="post" action="{{ path('allUsers.store', {'action': 'delete'}) }}">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('authenticate') }}">
+                                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                                        <button type="submit" class="delete_form">Удалить</button>
+                                    </form>
+                                    <form method="post" action="{{ path('allUsers.store', {'action': 'update'}) }}">
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('authenticate') }}">
+                                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                                        <input type="hidden" name="login" value="">
+                                        <input type="hidden" name="fio" value="">
+                                        <input type="hidden" name="phone" value="">
+                                        <input type="hidden" name="email" value="">
+                                        <input type="hidden" name="password" value="">
+                                        <button type="submit" class="change_form">Изменить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block javascripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('button[type="submit"]').click(function(e) {
+            e.preventDefault();
+
+            // Находим контейнер .flex_inf, к которому относится кнопка
+            let flexInf = $(this).closest('.flex_inf');
+            let userId = flexInf.data('id'); // Получаем значение data-id
+
+            // Находим форму, к которой относится кнопка
+            let form = $(this).closest('form');
+
+            // Переносим значения видимых полей в скрытые поля
+            flexInf.find('input[type="text"], input[type="email"], input[type="password"]').each(function() {
+                let inputName = $(this).attr('name');
+                let inputValue = $(this).val();
+
+                // Найдем соответствующее скрытое поле с таким же именем
+                form.find('input[type="hidden"][name="' + inputName + '"]').val(inputValue);
+            });
+
+            // Специальная обработка поля телефона
+            let phoneInput = flexInf.find('#phone_' + userId).val(); // Используем уникальный ID для телефона
+            if (phoneInput) {  // Проверяем, существует ли поле
+                let onlyDigits = phoneInput.replace(/\D/g, '');
+                form.find('input[type="hidden"][name="phone"]').val(onlyDigits);
+            }
+
+            // Отправка формы
+            form.submit();
+        });
+    });
+</script>
+
+    {% endblock %}

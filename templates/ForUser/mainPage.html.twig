@@ -1,0 +1,66 @@
+{# templates/registr.html.twig #}
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Главная{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/Main/profile/profile.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<div class="main_head">
+     <a href="{{ path('profile.index') }}" class="active">Мой профиль</a>
+    <a href="{{ path('allUsers.index') }}">Список пользователей</a>
+</div>
+<div class="main_content">
+    <div class="flex_content">
+        <div class="img_profile">
+            <img src="{{asset('image/user.png')}}">
+            <span>Фото пользователя</span>
+        </div>
+        <div class="form_inf_user">
+            <span>Информация пользователя:</span>
+            <form method="post" action="{{ path('profile_put.store') }}">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token('authenticate') }}">
+                <div class="user_information">
+                    <div class="form_block">
+                        <label>Логин: </label>
+                        <input type="text" name="login" value="{{ userLogin }}">
+                    </div>
+                    <div class="form_block">
+                        <label>ФИО: </label>
+                        <input type="text" name="fio" value="{{ userFio }}">
+                    </div>
+                    <div class="form_block">
+                        <label>Телефон: </label>
+                        <input type="text" data-mask="phone" id="phone" class="phone" value="{{ userPhone }}" placeholder="+7">
+                        <input type="hidden" name="phone" required>
+                    </div>
+                    <div class="form_block">
+                        <label>Почта: </label>
+                        <input type="email" name="email" value="{{ userEmail }}">
+                    </div>
+                    <div class="form_block">
+                        <label>Новый пароль: </label>
+                        <input type="password" name="password" value="">
+                    </div>
+                </div>
+                <button type="submit">Изменить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $('button[type="submit"]').click(function(e) {
+            e.preventDefault();
+            let phoneInput = $('#phone').val();
+            let onlyDigits = phoneInput.replace(/\D/g, '');
+            $('input[name="phone"]').val(onlyDigits);
+            $(this).closest('form').submit();
+        });
+</script>
+{% endblock %}

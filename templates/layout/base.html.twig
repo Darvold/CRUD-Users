@@ -1,0 +1,79 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{{asset('css/Body/scroll.css')}}">
+    <link rel="stylesheet" href="{{asset('css/HeadBlock/msg.css')}}">
+    <link rel="stylesheet" href="{{asset('css/Main/index.css')}}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('js/NumberMask/imask.js') }}"></script>
+    <header>
+        <div class="head_block">
+            <div class="center">
+                <div class="left_block">
+                    <span>Тестовое задание: CRUD запросы User</span>
+                </div>
+                <div class="right_block">
+                    <form method="POST" action="{{path('exit.store')}}">
+                        <button type="submit">Выйти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="main_block">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <!-- Подвал -->
+    </footer>
+
+    <div class="form-msg">
+        {% if app.session.flashBag.has('success') %}
+        <div class="notification-content">
+            <div class="notification"> {{ app.session.flashBag.get('success')[0] }}</div>
+        </div>
+
+        {% elseif app.session.flashBag.has('error') %}
+        <div class="notification-content">
+            <div class="notification"> {{ app.session.flashBag.get('error')[0] }}</div>
+        </div>
+
+        {% endif %}
+    </div>
+    <script>
+        $(document).ready(function() {
+        $(".notification").css('top', '-100px'); // Скрываем уведомление за пределами видимой области
+        setTimeout(function() {
+            $(".notification").animate({top: 20}, 500, function() {
+                setTimeout(function() {
+                    $(".notification").animate({top: '-100px'}, 500, function() {
+                        $(this).remove();
+                    });
+                }, 6000); // 6 секунд
+            });
+        }, 0); // Задержка перед появлением
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputElement = document.querySelector('[data-mask="phone"]')
+        const maskOptions = { // создаем объект параметров
+            mask: '+{7}(000)000-00-00' // задаем единственный параметр mask
+        }
+        IMask(inputElement, maskOptions) // запускаем плагин с переданными параметрами
+    })
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

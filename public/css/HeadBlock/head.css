@@ -1,0 +1,162 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: grey;
+	overflow-x: hidden;
+}
+button {
+	cursor: pointer;
+}
+.Head_border {
+	background-color: white;
+	width: 100%;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	height: 60px;
+	box-shadow: 5px 3px 10px 0px black;
+}
+
+.image_profile {
+	height: 50px;
+	width: 50px;
+	border-radius: 100%;
+	object-fit: cover;
+	cursor: pointer;
+}
+.Head_content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 20px;
+}
+.block_arrow {
+	width: 30px;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	cursor: pointer;
+}
+.block_arrow_botton {
+	transition: 0.2s ease;
+	width: 80px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+}
+.block_arrow_botton:hover {
+	background-color: #D6D6D6;
+}
+.arrow {
+	width: 30px;
+}
+.Logotip {
+	margin-left: 20px;
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	font-size: 30px;
+}
+.svg {
+	margin-bottom: 15px;
+	margin-right: 5px;
+	width: 36px;
+	height: 36px;
+}
+.Block_Text_User {
+	gap: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.Text_user {
+	font-size: 26px;
+	cursor: pointer;
+}
+.arrow {
+	transition: transform 0.2s;
+}
+.arrow_down {
+	transform: rotate(-90deg);
+}
+
+.left_block_icon {
+	width: 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.right_block_text {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.flex_block {
+	display: flex;
+}
+.text_button {
+	margin-top: 10px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.div_block_to_arrow {
+	box-shadow: 0px 4px 10px 0px black;
+	transition: transform 0.6s;
+	display: none;
+	border-radius: 4px;
+	width: 200px;
+	height: auto;
+	top: 65px;
+	z-index: 2;
+	right: -10px;
+	padding: 4px 4px 15px 4px;
+	position: absolute;
+	background-color: white;
+	transform: translateY(0%);
+}
+.button_a {
+	border-radius: 4px;
+	height: 40px;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid black;
+	font-size: 25px;
+	text-decoration: none;
+	color: black;
+	transition: 0.1s ease;
+	font-family: Times New Roman;
+}
+.button_b {
+	border-radius: 4px;
+	height: 40px;
+	border: none;
+	border-bottom: 1px solid black;
+	background-color: white;
+	font-size: 25px;
+	color: black;
+	transition: 0.1s ease;
+	font-family: Times New Roman;
+}
+.left_block_icon img {
+	width: 32px;
+}
+.button_a:hover {
+	border-radius: 4px;
+	background-color: #E0E0E0FF;
+}
+.button_b:hover {
+	border-radius: 4px;
+	background-color: #E0E0E0FF;
+}
+.div_block_to_arrow.visible {
+	display: block;
+	transform: translateY(0%);
+}

@@ -1,0 +1,27 @@
+body {
+  --scrollbar-foreground: #999;
+  --scrollbar-background: #333;
+  --scrollbar-size: 8px;
+  /* плашка-бегунок, фон */
+  scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
+}
+body::-webkit-scrollbar {
+  width: var(--scrollbar-size); /* в основном для вертикальных полос прокрутки */
+  height: var(--scrollbar-size); /* в основном для горизонтальных полос прокрутки */
+}
+body::-webkit-scrollbar-thumb { /* плашка-бегунок */
+  background: var(--scrollbar-foreground); /* фон */
+  border-radius: 4px;
+}
+body::-webkit-scrollbar-track { /* фон */
+  background: var(--scrollbar-background);
+}
+
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 4px;
+}
+
